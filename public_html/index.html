@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Crypto Ecosystem Stats Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" integrity="sha512-UXumZrZNiOwnTcZSHLOfcTs0aos2MzBWHXOHOuB0J/R44QB0dwY5JgfbvljXcklVf65Gc4El6RjZ+lnwd2az2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.2.0/chartjs-plugin-zoom.min.js" integrity="sha512-TT0wAMqqtjXVzpc48sI0G84rBP+oTkBZPgeRYIOVRGUdwJsyS3WPipsNh///ay2LJ+onCM23tipnz6EvEy2/UA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1>Crypto Ecosystem Stats <span style="color:grey;font-size: 18px;">Demo</span></h1>
+<br/>
+<div class="form">
+	<div>
+		<label for="ecosystem">Select Ecosystem:</label>
+		<select id="ecosystem" name="ecosystem">
+			<option value="">Please select an ecosystem</option>
+            <option value="smart-contract-platform">Smart Contract Platform</option>
+            <option value="moonriver-ecosystem">Moonriver Ecosystem</option>
+            <option value="polygon-ecosystem">Polygon Ecosystem</option>
+            <option value="binance-smart-chain">Binance Smart Chain Ecosystem</option>
+            <option value="avalanche-ecosystem">Avalanche Ecosystem</option>
+            <option value="arbitrum-ecosystem">Arbitrum Ecosystem</option>
+            <option value="stablecoins">Stablecoins</option>
+            <option value="exchange-based-tokens">Exchange-based Tokens</option>
+            <option value="decentralized-finance-defi">Decentralized Finance (DeFi)</option>        
+            <option value="centralized-exchange-token-cex">Centralized Exchange Token (CEX)</option>
+            <option value="xdai-ecosystem">Gnosis Chain Ecosystem</option>
+            <option value="solana-ecosystem">Solana Ecosystem</option>
+            <option value="cosmos-ecosystem">Cosmos Ecosystem</option>
+            <option value="cardano-ecosystem">Cardano Ecosystem</option>
+            <option value="fantom-ecosystem">Fantom Ecosystem</option>
+            <option value="dot-ecosystem">Polkadot Ecosystem</option>
+            <option value="meme-token">Meme Tokens</option>
+            <option value="terra-ecosystem">Terra Ecosystem</option>
+            <option value="non-fungible-tokens-nft">Non-Fungible Tokens (NFT)</option>
+            <option value="governance">Governance</option>
+            <option value="near-protocol-ecosystem">Near Protocol Ecosystem</option>
+            <option value="decentralized-exchange">Decentralized Exchange Token (DEX)</option>
+            <option value="yield-farming">Yield Farming</option>
+            <option value="gaming">GameFi</option>
+            <option value="metaverse">Metaverse</option>
+            <option value="play-to-earn">Play To Earn</option>
+            <option value="automated-market-maker-amm">Automated Market Maker (AMM)</option>
+            <option value="harmony-ecosystem">Harmony Ecosystem</option>
+            <option value="asset-backed-tokens">Asset-backed Tokens</option>
+            <option value="seigniorage">Seigniorage</option>
+            <option value="finance-banking">Finance / Banking</option>
+            <option value="internet-of-things-iot">Internet of Things (IOT)</option>
+            <option value="oracle">Oracle</option>
+            <option value="wrapped-tokens">Wrapped-Tokens</option>
+            <option value="storage">Storage</option>
+            <option value="privacy-coins">Privacy Coins</option>
+            <option value="lending-borrowing">Lending/Borrowing</option>
+            <option value="eth-2-0-staking">Eth 2.0 Staking</option>
+            <option value="yield-aggregator">Yield Aggregator</option>
+            <option value="olympus-pro">Olympus Pro</option>
+            <option value="masternodes">Masternodes</option>
+            <option value="decentralized-derivatives">Derivatives</option>
+            <option value="sports">Sports</option>
+            <option value="yearn-yfi-partnerships-mergers">Yearn Ecosystem</option>
+            <option value="rebase-tokens">Rebase Tokens</option>
+            <option value="analytics">Analytics</option>
+            <option value="celo-ecosystem">Celo Ecosystem</option>
+            <option value="oec-ecosystem">OEC Ecosystem</option>
+            <option value="decentralized-perpetuals">Perpetuals</option>
+            <option value="synthetic-assets">Synthetic Issuer</option>
+            <option value="ohm-fork">Ohm Fork</option>
+            <option value="zilliqa-ecosystem">Zilliqa Ecosystem</option>
+            <option value="decentralized-options">Options</option>
+            <option value="insurance">Insurance</option>
+            <option value="iotex-ecosystem">IoTeX Ecosystem</option>
+            <option value="mev-protection">MEV Protection</option>
+            <option value="social-money">Social Money</option>
+            <option value="prediction-markets">Prediction Markets</option>
+            <option value="music">Music</option>
+            <option value="daomaker-ecosystem">DaoMaker Ecosystem</option>
+            <option value="guild-scholarship">Guild and Scholarship</option>
+            <option value="synths">Synths</option>
+            <option value="gambling">Gambling</option>
+            <option value="heco-chain-ecosystem">HECO Chain Ecosystem</option>
+            <option value="defi-index">DeFi Index</option>
+            <option value="fan-token">Fan Token</option>
+            <option value="kardiachain-ecosystem">KardiaChain Ecosystem</option>
+            <option value="tourism">Tourism</option>
+            <option value="aave-tokens">Aave Tokens</option>
+            <option value="tokenized-stock">Tokenized Stock</option>
+            <option value="farming-as-a-service-faas">Farming-as-a-Service (FaaS)</option>
+		</select>
+	</div>
+	<button class="button" id="submit">Show Data</button>
+</div>
+<br/>
+<table id="metricTable" style="display:none;" class="center">
+    <tr>
+      <th>Market Cap</th>
+      <th>Volume</th>
+      <th>Market Cap 24h Change</th>
+      <th>Volume 24h Change</th>
+    </tr>
+    <tr>
+      <td id ="mc">0</td>
+      <td id="vol">0</td>
+      <td id="mc24h">0</td>
+      <td id="vol24h">0</td>
+    </tr>
+  </table>
+<br/>
+<br/>
+<br/>
+
+<canvas style="display: none;" id="MarketCapChart" width="1000" height="700"></canvas>
+<br/>
+<br/>
+
+<br/>
+<br/>
+<canvas style="display: none;" id="VolumeChart" width="1000" height="700"></canvas>
+
+<script src="mc.js"></script>
+
+</body>
+</html>
